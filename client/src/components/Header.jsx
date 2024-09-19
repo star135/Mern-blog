@@ -27,7 +27,7 @@ export default function Header() {
                 <FiMoon/>
             </button>
             <Link to={'/sign-in'}>
-            <button  className='bg-gradient-to-r from-purple-500  to-blue-500 rounded-lg p-2 my-2 text-white self-center text-sm sm:text-xl font-semibold dark:text-white'>Sign in
+            <button   className='bg-gradient-to-r from-purple-500  to-blue-500 rounded-lg p-2 my-2 text-white self-center text-sm sm:text-xl font-semibold dark:text-white ' >Sign in
             </button>
                 </Link>
                 <NavbarToggle />
