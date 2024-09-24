@@ -33,7 +33,11 @@ export const signin = async (req,res,next)=>{
     const {email, password} = req.body;
 
     if(!email || !password || email==='' || password===''){
+<<<<<<< HEAD
         return next(errorHandler(400,'All fields are required'));
+=======
+        next(errorHandler(400,'All fields are required'));
+>>>>>>> 7267fab03b5ae2031df79657a49a462799385588
     }
 
     try {
@@ -43,7 +47,11 @@ export const signin = async (req,res,next)=>{
         }
         const validPassword = bcryptjs.compareSync(password, validUser.password);
         if(!validPassword){
+<<<<<<< HEAD
             return next(errorHandler(400,'Invalid password'));
+=======
+            next(errorHandler(400,'Invalid password'));
+>>>>>>> 7267fab03b5ae2031df79657a49a462799385588
         }
 
         const token = jwt.sign({id: validUser._id}, process.env.JWT_SECRET);
