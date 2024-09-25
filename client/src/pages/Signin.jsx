@@ -5,6 +5,7 @@ import { TextInput } from 'flowbite-react';
 import { Button } from 'flowbite-react';
 import { useDispatch , useSelector } from 'react-redux';
 import { signInStart , signInSuccess , signInFailure } from '../redux/user/userSlice';
+import OAuth from '../components/OAuth';
 
 
 export default function signin() {
@@ -23,7 +24,7 @@ export default function signin() {
 
     try {
       dispatch(signInStart());
-      const res = await fetch('/api/user/signin', {
+      const res = await fetch('/api/auth/signin', {
         method:'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(formData),
@@ -92,6 +93,7 @@ export default function signin() {
               ) : 'sign in'
             }
             </Button>
+            <OAuth/>
           </form>
 
           <div className='flex gap-2 text-sm mt-5'>

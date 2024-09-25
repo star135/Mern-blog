@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Alert, Label, Spinner } from 'flowbite-react'; 
 import { TextInput } from 'flowbite-react';
 import { Button } from 'flowbite-react';
+import OAuth from '../components/OAuth';
 
 export default function signup() {
   const [formData, setformData]= useState({});
@@ -21,7 +22,7 @@ export default function signup() {
     try {
       setLoading(true);
       setErrorMessage(null);
-      const res = await fetch('/api/user/signup', {
+      const res = await fetch('/api/auth/signup', {
         method:'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(formData),
@@ -99,6 +100,7 @@ export default function signup() {
               ) : 'sign up'
             }
             </Button>
+            <OAuth/>
           </form>
 
           <div className='flex gap-2 text-sm mt-5'>
