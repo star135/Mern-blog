@@ -1,11 +1,13 @@
-import { Navbar, NavbarCollapse, NavbarLink, NavbarToggle, TextInput } from 'flowbite-react'
+import { Avatar, Dropdown, DropdownDivider, DropdownHeader, DropdownItem, Navbar, NavbarCollapse, NavbarLink, NavbarToggle, TextInput } from 'flowbite-react'
 import React from 'react'
 import { Link , useLocation} from 'react-router-dom';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { FiMoon } from 'react-icons/fi';
+import {useSelector} from 'react-redux';
 
 export default function Header() {
     const path=useLocation().pathname;
+    const {currentUser} = useSelector(state => state.user);
   return (
     <Navbar className='border-b-2'>
         <Link to="/" className='bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-lg p-2  text-white self-center text-sm sm:text-xl font-semibold dark:text-white'>
@@ -26,10 +28,40 @@ export default function Header() {
              >
                 <FiMoon/>
             </button>
-            <Link to={'/sign-in'}>
-            <button   className='bg-gradient-to-r from-purple-500  to-blue-500 rounded-lg p-2 my-2 text-white self-center text-sm sm:text-xl font-semibold dark:text-white ' >Sign in
-            </button>
-                </Link>
+
+            {currentUser ? (
+                <Dropdown 
+                    arrowIcon={false}
+                    inline
+                    label={
+                        <Avatar
+                        alt='user'
+                        img={currentUser.profilePicture}
+                        rounded
+                        />
+                    }
+                >
+                    <DropdownHeader>
+                        <span className='block text-sm'>@{currentUser.username}</span>
+                        <span className='block text-sm font-medium truncate'>{currentUser.email}</span>
+                    </DropdownHeader>
+                    <Link to={'/dashboard?tab=profile'}>
+                        <DropdownItem>Profile</DropdownItem>
+                    </Link>
+                    <DropdownDivider/>
+                    <DropdownItem>Sign out</DropdownItem>
+
+                </Dropdown>
+            ):
+                (
+
+                    <Link to={'/sign-in'}>
+                    <button   className='bg-gradient-to-r from-purple-500  to-blue-500 rounded-lg p-2 my-2 text-white self-center text-sm sm:text-xl font-semibold dark:text-white ' >Sign in
+                    </button>
+                        </Link>
+                )
+        }
+
                 <NavbarToggle />
         </div>
         <NavbarCollapse>
