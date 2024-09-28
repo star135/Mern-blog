@@ -208,9 +208,10 @@ export default function DashProfile() {
                 {updateUserError}
 
             </Alert>
-        {error && (
+        )}
+        {updateUserError && (
             <Alert color='failure' className='mt-5'>
-                {error}
+                {updateUserError}
 
             </Alert>
         )}
